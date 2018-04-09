@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Color Slider</title>
+    <script type = "text/javascript">
+
+    </script>
+    <style type = "text/css">
+        #display{
+            position: relative;
+            border: 3px solid black;
+            height: 200px;
+            width: 300px;
+        }
+        .slider{
+            position: relative;
+            width: 300px;
+            height: 300px;
+
+        }
+        input{
+            display: block;
+
+            width: 100%;
+        }
+    </style>
+
+</head>
+<body>
+    <form>
+    <div class="slider">
+        Red <input type="range" min="0" max="255" step="1" id="red" value="115">
+        Green <input type="range" min="0" max="255" step="1" id="green" value="10">
+        Blue <input type="range" min="0" max="255" step="1" id="blue" value="162">
+        <div id="display"></div>
+    </div>
+    </form>
+    <script>
+        const electron = require('electron');
+        const {ipcRenderer} = electron;
+        var input = document.querySelectorAll("input");
+        for (var i = 0; i < input.length; i++){
+            input[i].addEventListener("input", function(){
+                var red = document.getElementById("red").value;
+
+                var green = document.getElementById("green").value;
+                var blue = document.getElementById("blue").value;
+                var display = document.getElementById("display");
+                var RGB = [{red},{green},{blue}];
+                ipcRenderer.send('RGB',RGB);
+                console.log(red + "  " +  green + "  " +  blue);
+                display.style.background = "rgb("+red+","+green+","+blue +")";
+            })
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "name": "colorslider",
+  "version": "1.0.0",
+  "description": "RGB Color slider in JS and electron",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Thomas Liu",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^1.8.4"
+  }
+}
